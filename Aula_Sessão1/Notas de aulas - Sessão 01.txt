@@ -1,0 +1,29 @@
+﻿Banco de dados são arquivos que ficam armazenados no HD
+A conexão a eles ocorre através do SGBD - Sistema de Gerenciamento de Banco de Dados.
+
+
+Comando para encontrar o endereço do banco de dados no sistema:
+
+
+                 show variables like 'datadir';
+
+
+C:\ProgramData\MySQL\MySQL Server 5.7\Data\
+
+
+
+
+Banco de dados - Seu papel é gerenciar os dados e o front-end é exibir esses dados de forma amigável ao usuário.
+
+
+Arquitetura de sofware
+MVC - Model, View e Controler
+
+
+* View - O que o usuário vê (Telas do sistema) - HTML, JQUERY, CSS, JAVA SCRIPT
+* Controler - Regras de negócio - Processamento do sistema - JAVA, PHP, C#
+* Model - Classes modelo que representam o objeto. São representadas por tabelas no 
+banco de dados.
+
+
+Modelagem lógica e física
