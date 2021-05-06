@@ -42,6 +42,9 @@ ANO_PUBLICACAO - INT(4)
 CREATE DATABASE LIVRARIA;
 USE LIVRARIA;
 
+/*Exibindo bancos */
+SHOW DATABASES;
+
 /*Criação da tabela: LIVROS */
 CREATE TABLE LIVROS(
 	NOME_DO_LIVRO VARCHAR(50),
@@ -67,6 +70,64 @@ VALUES('Cavaleiro REAL','Ana Claudia', 'Feminino',465, 'Atlas', 49.9, 'RJ', 2009
 	  ('Pra sempre amigas', 'Leda Silva', 'Feminino', 510, 'Insignia', 78.98, 'ES',2011),
 	  ('Copas Inesqueciveis', 'Marco Alcantara', 'Masculino', 200, 'Larson', 130.98, 'RS', 2018),
 	  ('O poder da mente', 'Clara Mafra', 'Feminino', 120, 'Continental', 56.58, 'SP', 2017);
+
+
+
+/*1 – Trazer todos os dados.*/
+SELECT *FROM LIVROS;
+
+/*2 – Trazer o nome do livro e o nome da editora*/
+SELECT NOME_DO_LIVRO, NOME_DA_EDITORA FROM LIVROS;
+
+/*3 – Trazer o nome do livro e a UF dos livros publicados por autores do sexo masculino.*/
+SELECT NOME_DO_LIVRO, ESTADO_DA_EDITORA FROM LIVROS WHERE SEXO_DO_AUTOR = 'Masculino';
+
+/*4 - Trazer o nome do livro e o número de páginas dos livros publicados por autores do sexo feminino.*/
+SELECT NOME_DO_LIVRO, NUMERO_DE_PÁGINAS FROM LIVROS WHERE SEXO_DO_AUTOR = 'Feminino';
+
+/*5 – Trazer os valores dos livros das editoras de São Paulo.*/
+SELECT VALOR_DO_LIVRO FROM LIVROS WHERE ESTADO_DA_EDITORA = 'SP';
+
+/*6 – Trazer os dados dos autores do sexo masculino que tiveram livros publicados por São Paulo ou Rio de Janeiro (Questão Desafio).*/
+
+SELECT NOME_DO_AUTOR, SEXO_DO_AUTOR, ESTADO_DA_EDITORA 
+FROM LIVROS 
+WHERE SEXO_DO_AUTOR = 'Masculino' 
+AND ESTADO_DA_EDITORA = 'RJ' AND ESTADO_DA_EDITORA='SP';
+
+/* VAI DAR ERRADO */
+
+SELECT NOME_DO_AUTOR, SEXO_DO_AUTOR, ESTADO_DA_EDITORA 
+FROM LIVROS 
+WHERE SEXO_DO_AUTOR = 'Masculino' 
+AND (ESTADO_DA_EDITORA = 'RJ' OR ESTADO_DA_EDITORA='SP');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

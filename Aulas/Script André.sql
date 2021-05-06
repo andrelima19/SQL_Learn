@@ -77,7 +77,7 @@ INSERT INTO CLIENTE VALUES('JOAO', 988638273, 'JOAO@GMAIL.COM', '22923110', 'MAI
 Seleção projeção e junção */
 
        
-SELECT NOW();/* Exibir data e hora
+SELECT NOW();/* Exibir data e hora*/
 
 /* O comando SHOW TABLES (Que só existe no mysql, é um ponteiramento do comando SELECT, ou seja, ele aponta para 
 o comando padrão SELECT só que chama esse comando por esse nome: SHOW TABLES */
@@ -134,6 +134,54 @@ SELECT NOME, SEXO FROM CLIENTE WHERE ENDEREÇO LIKE 'MAIA LACERDA%';
 /* % NO MEIO*/
 SELECT NOME, SEXO FROM CLIENTE WHERE ENDEREÇO LIKE '%ESTACIO%';
 /* %RJ - O endereço começa com qulquer coisa,  insere-se o dado escolhido, e termina com qualquer coisa*/
+
+
+/* OPERADORES LÓGICOS 
+OR -> PARA QUE A SAIDA DA QUERY SEJA VERDADEIRA, BASTA QUE APENAS UMA CONDICAO SEJA VERDADEIRA.
+AND -> PARA QUE A SAIDA SEJA VERDADEIRA TODAS AS CONDICOES PRECISAM SER VERDADEIRAS.
+*/
+
+/* OR - OU */
+
+
+
+USE PROJETO;
+SELECT *FROM CLIENTE;
+
+SELECT NOME, SEXO, ENDEREÇO FROM CLIENTE
+WHERE
+SEXO = 'M' OR ENDEREÇO LIKE '%RJ';
+
+SELECT NOME, SEXO, ENDEREÇO FROM CLIENTE
+WHERE
+SEXO = 'M' AND ENDEREÇO LIKE '%RJ';
+
+SELECT NOME, SEXO, ENDEREÇO FROM CLIENTE
+WHERE
+SEXO = 'F' AND ENDEREÇO LIKE '%RJ';
+
+/* COLOQUE OS STATEMENT SEMPRE NOS MESMOS PARENTESES. USAR OS PARENTESES
+PARA PRIORIZAR OS STATEMENT  */
+
+
+/*FUNÇÕES DE AGREGAÇÃO*/
+/*COUNT - CONTA OS REGISTROS DE UMA TABELA*/
+SELECT COUNT(*) FROM CLIENTE;
+
+/*Utilizando um alias para ficar mais apresentável*/
+SELECT COUNT(*) AS "Quantidade de registros da tabela cliente" FROM CLIENTE;
+
+
+/* OPERADOR GROUP BY */
+SELECT SEXO COUNT(*) FROM CLIENTE;
+
+
+
+
+
+
+
+
 
 
 
