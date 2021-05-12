@@ -51,6 +51,75 @@ ISSO ;E O QUE CHAMAMOS DE CHAVE PRIMARIA OU PRIMARY KEY.
 
 
 
+CREATE DATABASE COMERCIO;
+USE COMERCIO;
+
+/*
+CREATE TABELA CLIENTE(
+	IDCLIENTE INT PRIMARY KEY AUTO_INCREMENT, 
+	NOME VARCHAR(30) NOT NULL -- Obrigatório,
+	SEXO ENUM('M', 'F') NOT NULL, -- ENUM é um domínio, caixa
+	-- de texto com valor fixo. Em outras linguagens O ENUM se chama Constraint de check
+	EMAIL VARCHAR(50) UNIQUE -- Não permite dados repetidos.
+);
+
+*/
+
+
+CREATE TABLE CLIENTE(
+	IDCLIENTE INT PRIMARY KEY AUTO_INCREMENT,
+	NOME VARCHAR(30) NOT NULL,
+	SEXO ENUM('M','F') NOT NULL,
+	EMAIL VARCHAR(50) UNIQUE,
+	CPF VARCHAR(15) UNIQUE
+);
+
+CREATE TABLE ENDERECO(
+	IDENDERECO INT PRIMARY KEY AUTO_INCREMENT,
+	RUA VARCHAR(30) NOT NULL,
+	BAIRRO VARCHAR(30) NOT NULL,
+	CIDADE VARCHAR(30) NOT NULL,
+	ESTADO CHAR(2) NOT NULL
+);
+
+CREATE TABLE TELEFONE(
+	IDTELEFONE INT PRIMARY KEY AUTO_INCREMENT,
+	TIPO ENUM('RES', 'CEL', 'COM') NOT NULL,
+	NUMERO VARCHAR(10) NOT NULL
+);
+
+
+-- Endereço  - Obrigatório
+-- Cadastro somente um
+-- Telefone - Não obrigatório
+-- Cadastro de mais de um (Opcional)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
