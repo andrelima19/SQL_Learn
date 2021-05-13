@@ -235,22 +235,80 @@ AND EMAIL = 'CATARINA.LOPES@UOL.COM';
 
 
 
+/*SELEÇÃO, PROJEÇÃO E JUNÇÃO*/
+-- PROJEÇÃO: Tudo que você quer ver na tela.
+-- TIPOS DE PROJEÇÕES:
+
+   SELECT COLUN FROM TABELA;
+   SELECT NOW() AS DATA_ATUAL;
+   SELECT 2 + 2 AS SOMA;
+
+-- SELEÇÃO:    
+/* SELECAO -> É UM SUBCONJUNTO DO CONJUNTO TOTAL DE REGISTROS DE UMA TABELA
+A CLAUSULA DE SELECAO É O WHERE
+*/
+-- Filtrar um subconjunto do banco que representa o conjunto universo.
+-- Em outras palavras, filtrar uma coluna de uma tabela.
+	SELECT NOME, SEXO, EMAIL
+	FROM CLIENTE
+	WHERE SEXO  = 'F';
+
+	SELECT NUMERO FROM TELEFONE
+	WHERE TIPO = 'CEL';
+
+-- JUNÇÃO --> JOIN
+    SELECT NOME, EMAIL, IDCLIENTE
+    FROM CLIENTE;
+
+ -------+-------------------+-----------+
+| NOME   | EMAIL             | IDCLIENTE |
++--------+-------------------+-----------+
+| JOAO   | JOAOA@IG.COM      |         1 |
+| CARLOS | CARLOSA@IG.COM    |         2 |
+| ANA    | ANA@IG.COM        |         3 |
+| CLARA  | NULL              |         4 |
+| JORGE  | JORGE@IG.COM      |         5 |
+| CELIA  | JCELIA@IG.COM     |         6 |
+| MARCIA | MCARVALHO@UOL.COM |         7 |
++--------+-------------------+-----------+
+
+   SELECT ID_CLIENTE, BAIRRO, CIDADE
+   FROM ENDEREÇO;
+
+------------+------------+----------------+
+| ID_CLIENTE | BAIRRO     | CIDADE         |
++------------+------------+----------------+
+|          4 | CENTRO     | B. HORIZONTE   |
+|          1 | CENTRO     | RIO DE JANEIRO |
+|          3 | JARDINS    | SAO PAULO      |
+|          2 | ESTACIO    | RIO DE JANEIRO |
+|          6 | FLAMENGO   | RIO DE JANEIRO |
+|          5 | CENTRO     | VITORIA        |
+|          7 | COPACABANA | RIO DE JANEIRO |
++------------+------------+----------------+
+
+-- INTEGRIDADE REFERENCIAL - CHAVE PRIMARIA SER IGUAL A CHAVE ESTRANGEIRA
+
+-- INNER (DENTRO)
+-- CLAUSULA DA JUNÇÃO É O JOIN
+
+SELECT NOME, SEXO, BAIRRO, CIDADE -- ME TRAGA NOME E SEXO /*PROJEÇÃO*/
+FROM CLIENTE /*ORIGEM*/
+INNER JOIN ENDERECO -- ME JUNTE COM (JUNTE BAIRRO E CIDADE) DA TABELA ENDEREÇO /*JUNÇÃO*/
+ON IDCLIENTE = ID_CLIENTE; -- CONDIÇÃO
+WHERE SEXO = 'F'; /*SELECAO*/
+
+-- QUERY COMPLETA 
+SELECT NOME, SEXO, BAIRRO, CIDADE -- ME TRAGA NOME E SEXO /*PROJEÇÃO*/
+FROM CLIENTE /*ORIGEM*/
+	INNER JOIN ENDERECO -- ME JUNTE COM (JUNTE BAIRRO E CIDADE) DA TABELA ENDEREÇO /*JUNÇÃO*/
+	ON IDCLIENTE = ID_CLIENTE; -- CONDIÇÃO
+WHERE SEXO = 'F'; /*SELECAO*/
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+SELECT NOME, SEXO, EMAIL, TIPO, NUMERO
+FROM CLIENTE
+	INNER JOIN TELEFONE
+	ON IDCLIENTE = ID_CLIENTE;
 
 
