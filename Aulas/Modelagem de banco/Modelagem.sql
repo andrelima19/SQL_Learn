@@ -220,5 +220,3 @@ SELECT * FROM TELEFONE;
 
 
 
-
-
