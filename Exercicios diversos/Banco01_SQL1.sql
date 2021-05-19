@@ -51,6 +51,8 @@ CREATE TABLE emprestimo(
 
 );
 
+
+
 -- TABLE CLIENTE
 INSERT INTO CLIENTE VALUES(null, 'João Almeida', 'Padeiro', 'Lapa');
 INSERT INTO CLIENTE VALUES(null, 'Carlos Antonio', 'Professor', 'Centro');
@@ -73,19 +75,9 @@ INSERT INTO AGENCIA VALUES(null, '089', 'Gávea');
 INSERT INTO AGENCIA VALUES(null, '123', 'Braga');
 INSERT INTO AGENCIA VALUES(null, '011', 'Lisboa');
 INSERT INTO AGENCIA VALUES(null, '011', 'Lisboa');
+INSERT INTO AGENCIA VALUES(null, '123', 'Braga');
 
 
-+-------------+---------+------------+
-| cod_agencia | agencia | localidade |
-+-------------+---------+------------+
-|           1 | 213     | Lapa       |
-|           2 | 113     | Centro     |
-|           3 | 002     | Pavuna     |
-|           4 | 233     | Copacabana |
-|           5 | 089     | Gávea      |
-|           6 | 123     | Braga      |
-|           7 | 011     | Lisboa     |
-+-------------+---------+------------+
 
 -- TABLE CONTA
 INSERT INTO CONTA VALUES(null, 'Corrente', 1200.00);
@@ -97,11 +89,21 @@ INSERT INTO CONTA VALUES(null, 'Corrente', 1200.00, 1,1);
 INSERT INTO CONTA VALUES(null, 'Corrente', 100.50, 2,2);
 INSERT INTO CONTA VALUES(null, 'Corrente', 3000.23, 3,3);
 INSERT INTO CONTA VALUES(null, 'Corrente', 40.00, 4,4);
-INSERT INTO CONTA VALUES(null, 'Corrente', 500.000.00, 5,5);
+INSERT INTO CONTA VALUES(null, 'Poupança', 50000.00, 5,5);
 INSERT INTO CONTA VALUES(null, 'Corrente', 4320.32, 6,6);
-INSERT INTO CONTA VALUES(null, 'Corrente', 10.01, 7,7);
-INSERT INTO CONTA VALUES(null, 'Corrente', 741.35, 8,8);
-INSERT INTO CONTA VALUES(null, 'Corrente', 0.00, 9,9);
+INSERT INTO CONTA VALUES(null, 'Poupança', 10.01, 7,7);
+INSERT INTO CONTA VALUES(null, 'Poupança', 741.35, 8,8);
+INSERT INTO CONTA VALUES(null, 'Corrente', 01.00, 9,10);
+
+-- TABLE EMPRESTIMO
+INSERT INTO EMPRESTIMO VALUES(Null, 3000.00, Null, Null);
+INSERT INTO EMPRESTIMO VALUES(Null, Null, Null, Null);
+INSERT INTO EMPRESTIMO VALUES(Null, Null, Null, Null);
+INSERT INTO EMPRESTIMO VALUES(Null, 4000.00, Null, Null);
+INSERT INTO EMPRESTIMO VALUES(Null, 10000.00, Null, Null);
+INSERT INTO EMPRESTIMO VALUES(Null, 2000.00, Null, Null);
+INSERT INTO EMPRESTIMO VALUES(Null, Null, Null, Null);
+INSERT INTO EMPRESTIMO VALUES(Null, 1000.00, Null, Null);
 
 
 -- 1. Quais os clientes (cod_cliente e cliente) deste Banco?
@@ -133,8 +135,18 @@ WHERE localidade = 'Braga';
 +----------------+------------+
 
 -- 3. Quais os clientes (cod_cliente) com contas na agência cod_agencia = ‘123’?
+SELECT CLIENTE, AGENCIA
+FROM CLIENTE
+	INNER JOIN AGENCIA
+	ON COD_CLIENTE = COD_AGENCIA
+	WHERE AGENCIA = '123';
+
 
 -- 4. Quais os clientes que residem em localidades onde existem agências?
+SELECT CLIENTE.CLIENTE, CLIENTE.LOCALIDADE, AGENCIA.AGENCIA
+FROM CLIENTE
+	INNER JOIN AGENCIA
+	ON CLIENTE.COD_CLIENTE = AGENCIA.COD_AGENCIA;
 
 -- 5. Quais os clientes que residem na mesma localidade das agências onde possuem contas?
 
