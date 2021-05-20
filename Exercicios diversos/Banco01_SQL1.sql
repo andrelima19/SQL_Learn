@@ -58,13 +58,26 @@ INSERT INTO CLIENTE VALUES(null, 'João Almeida', 'Padeiro', 'Lapa');
 INSERT INTO CLIENTE VALUES(null, 'Carlos Antonio', 'Professor', 'Centro');
 INSERT INTO CLIENTE VALUES(null, 'Lucília de medeiros', 'Secretária', 'Pavuna');
 INSERT INTO CLIENTE VALUES(null, 'Jessica Aguilar', 'Arquiteta', 'Copacabana');
-INSERT INTO CLIENTE VALUES(null, 'Rubens de Moura Sobral', 'Eletricista', 'Gávea');
+INSERT INTO CLIENTE VALUES(null, 'Rubens de Moura Sobral', 'Professor', 'Gávea');
 INSERT INTO CLIENTE VALUES(null, 'Carlos Silva', Null, 'Braga');
 INSERT INTO CLIENTE VALUES(null, 'Ana Beatriz', 'Doméstica', 'Lisboa');
 INSERT INTO CLIENTE VALUES(null, 'Suzana Fontes', 'Confeiteira', 'Lisboa');
 INSERT INTO CLIENTE VALUES(null, 'Lilian Ribeiro', Null, 'Braga');
 
 );
++-------------+------------------------+-------------+------------+
+| cod_cliente | cliente                | profissao   | localidade |
++-------------+------------------------+-------------+------------+
+|           1 | João Almeida           | Padeiro     | Lapa       |
+|           2 | Carlos Antonio         | Professor   | Centro     |
+|           3 | Lucília de medeiros    | Secretária  | Pavuna     |
+|           4 | Jessica Aguilar        | Arquiteta   | Copacabana |
+|           5 | Rubens de Moura Sobral | Eletricista | Gávea      |
+|           6 | Carlos Silva           | NULL        | Braga      |
+|           7 | Ana Beatriz            | Doméstica   | Lisboa     |
+|           8 | Suzana Fontes          | Confeiteira | Lisboa     |
+|           9 | Lilian Ribeiro         | NULL        | Braga      |
++-------------+------------------------+-------------+------------+
 
 -- TABLE AGENCIA
 INSERT INTO AGENCIA VALUES(null, '213', 'Lapa');
@@ -77,6 +90,19 @@ INSERT INTO AGENCIA VALUES(null, '011', 'Lisboa');
 INSERT INTO AGENCIA VALUES(null, '011', 'Lisboa');
 INSERT INTO AGENCIA VALUES(null, '123', 'Braga');
 
++-------------+---------+------------+
+| cod_agencia | agencia | localidade |
++-------------+---------+------------+
+|           1 | 213     | Lapa       |
+|           2 | 113     | Centro     |
+|           3 | 002     | Pavuna     |
+|           4 | 233     | Copacabana |
+|           5 | 089     | Gávea      |
+|           6 | 123     | Braga      |
+|           7 | 011     | Lisboa     |
+|           8 | 011     | Lisboa     |
+|           9 | 123     | Braga      |
++-------------+---------+------------+
 
 
 -- TABLE CONTA
@@ -93,7 +119,21 @@ INSERT INTO CONTA VALUES(null, 'Poupança', 50000.00, 5,5);
 INSERT INTO CONTA VALUES(null, 'Corrente', 4320.32, 6,6);
 INSERT INTO CONTA VALUES(null, 'Poupança', 10.01, 7,7);
 INSERT INTO CONTA VALUES(null, 'Poupança', 741.35, 8,8);
-INSERT INTO CONTA VALUES(null, 'Corrente', 01.00, 9,10);
+INSERT INTO CONTA VALUES(null, 'Corrente', 5.00, 9,9);
+
++-----------+------------+----------+---------------+---------------+
+| num_conta | tipo_conta | saldo    | cod_cliente_F | cod_agencia_F |
++-----------+------------+----------+---------------+---------------+
+|         1 | Corrente   |  1200.00 |             1 |             1 |
+|         2 | Corrente   |   100.50 |             2 |             2 |
+|         3 | Corrente   |  3000.23 |             3 |             3 |
+|         4 | Corrente   |    40.00 |             4 |             4 |
+|         5 | Poupança   | 50000.00 |             5 |             5 |
+|         6 | Corrente   |  4320.32 |             6 |             6 |
+|         7 | Poupança   |    10.01 |             7 |             7 |
+|         8 | Poupança   |   741.35 |             8 |             8 |
+|         9 | Corrente   |     5.00 |             9 |             9 |
++-----------+------------+----------+---------------+---------------+
 
 -- TABLE EMPRESTIMO
 INSERT INTO EMPRESTIMO VALUES(Null, 3000.00, Null, Null);
@@ -104,6 +144,23 @@ INSERT INTO EMPRESTIMO VALUES(Null, 10000.00, Null, Null);
 INSERT INTO EMPRESTIMO VALUES(Null, 2000.00, Null, Null);
 INSERT INTO EMPRESTIMO VALUES(Null, Null, Null, Null);
 INSERT INTO EMPRESTIMO VALUES(Null, 1000.00, Null, Null);
+INSERT INTO EMPRESTIMO VALUES(Null, 3500.00, Null, Null);
+
++----------------+----------+---------------+---------------+
+| num_emprestimo | valor    | cod_cliente_F | cod_agencia_F |
++----------------+----------+---------------+---------------+
+|              1 |  3000.00 |          NULL |          NULL |
+|              2 |     NULL |          NULL |          NULL |
+|              3 |     NULL |          NULL |          NULL |
+|              4 |  4000.00 |          NULL |          NULL |
+|              5 | 10000.00 |          NULL |          NULL |
+|              6 |  2000.00 |          NULL |          NULL |
+|              7 |     NULL |          NULL |          NULL |
+|              8 |  1000.00 |          NULL |          NULL |
+|              9 |  3500.00 |          NULL |          NULL |
++----------------+----------+---------------+---------------+
+
+
 
 
 -- 1. Quais os clientes (cod_cliente e cliente) deste Banco?
@@ -135,35 +192,81 @@ WHERE localidade = 'Braga';
 +----------------+------------+
 
 -- 3. Quais os clientes (cod_cliente) com contas na agência cod_agencia = ‘123’?
-SELECT CLIENTE, AGENCIA
-FROM CLIENTE
-	INNER JOIN AGENCIA
-	ON COD_CLIENTE = COD_AGENCIA
-	WHERE AGENCIA = '123';
+SELECT cliente.cod_cliente, cliente.cliente, agencia.agencia, agencia.cod_agencia
+FROM cliente
+	INNER JOIN agencia
+	ON cod_cliente = cod_agencia;
 
 
 -- 4. Quais os clientes que residem em localidades onde existem agências?
-SELECT CLIENTE.CLIENTE, CLIENTE.LOCALIDADE, AGENCIA.AGENCIA
-FROM CLIENTE
-	INNER JOIN AGENCIA
-	ON CLIENTE.COD_CLIENTE = AGENCIA.COD_AGENCIA;
+
+>>cliente, localidade, agencia, localidade
+
+SELECT cliente.cliente, cliente.localidade, agencia.agencia, agencia.localidade
+FROM cliente
+	INNER JOIN agencia
+	ON cod_cliente = cod_agencia;
+
 
 -- 5. Quais os clientes que residem na mesma localidade das agências onde possuem contas?
 
+SELECT cliente.cliente, cliente.localidade, agencia.localidade
+WHERE localidade ;
+
+
+
 -- 6. Quais os clientes com empréstimos de valor superior a 2.500€ ?
 
--- 7. Quais os nomes dos clientes com a mesma profissão que o cliente com cod_cliente = ‘1234’?
+SELECT cliente.cliente, emprestimo.valor
+FROM cliente
+INNER JOIN emprestimo
+ON cod_cliente = num_emprestimo
 
--- 8. Listar as contas (num_conta, saldo) da agência cujo cod_agencia = ‘123’, por ordem decrescente do seu
+WHERE valor > 2500;
+
+-- 7. Quais os nomes dos clientes com a mesma profissão que o cliente com cod_cliente = ‘5’?
+
+SELECT cod_cliente, cliente, profissao
+FROM cliente
+WHERE profissao = 'Professor';
+
+
+-- 8. Listar as contas (num_conta, saldo) da agência cujo agencia = ‘123’, por ordem decrescente do seu
 -- valor de saldo.
 
--- 9. Quantas contas existem em todas as agências do Banco?
+SELECT cliente.cliente, agencia.cod_agencia, agencia.agencia, conta.num_conta, conta.saldo
+FROM cliente
 
--- 10. Quantos clientes possuem contas na agência cujo cod_agencia = ‘123’?
+INNER JOIN agencia
+ON cod_cliente = cod_agencia
+
+INNER JOIN conta
+ON cod_cliente = num_conta
+
+WHERE agencia = '123'
+GROUP BY cliente;
+
+-- 9. Quantas contas existem em todas as agências do Banco?
+SELECT COUNT(*) AS 'Número de contas' FROM conta;
+
+
+-- 10. Quantos clientes possuem contas na agência cuja agencia = ‘123’?
+SELECT COUNT(*) AS 'Número de clientes da agencia: 123' 
+FROM agencia
+WHERE agencia = '123';
+
 
 -- 11. Listar o número de contas existentes em cada agência.
+SELECT COUNT(*) AS 'Número de contas de cada agência'
+FROM conta
+GROUP BY saldo;
+
 
 -- 12. Quais os clientes cuja profissão é desconhecida?
+SELECT cliente, profissao
+FROM cliente
+WHERE profissao
+
 
 -- 13. Para cada agência (cod_agencia) com menos de 1000 contas, listar os valores máximo e mínimo dos
 -- saldos dessas contas, assim como o saldo médio.
