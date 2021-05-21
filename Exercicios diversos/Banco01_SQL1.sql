@@ -265,11 +265,12 @@ GROUP BY saldo;
 -- 12. Quais os clientes cuja profissão é desconhecida?
 SELECT cliente, profissao
 FROM cliente
-WHERE profissao
-
+WHERE profissao IS Null;
 
 -- 13. Para cada agência (cod_agencia) com menos de 1000 contas, listar os valores máximo e mínimo dos
 -- saldos dessas contas, assim como o saldo médio.
+
+
 
 /*14. Quais os clientes (cod_cliente e cliente) da agência cod_agencia = ‘123’? (solução obtida pressupondo que
 um cliente pode ter um empréstimo sem ter uma conta, pensamento errado na prática, contudo se assim não
